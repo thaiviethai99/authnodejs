@@ -40,8 +40,19 @@ app.use(
     cookie: { maxAge: 3000000 }
   })
 );
+function dbQuery(sql){
+  return new Promise(function(resolve, reject) {
+      db.query(sql, function(err, result){  
+        if (err) {
+          return reject(err);
+        }
+        resolve(result);
+       });
+  });
+}
 router.use(function (req, res, next) {
   console.log('Time:', Date.now())
+  //global.dataUser = await dbQuery(sql);    
   next()
 })
 // development only

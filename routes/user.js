@@ -47,6 +47,7 @@ exports.login =  async function(req, res){
             if (rs == true) {
                req.session.userId = results[0].id;
                req.session.user = results[0];
+               global.dataUser=results;
                console.log(results[0].id);
                res.redirect('/home/dashboard');
            } else {
